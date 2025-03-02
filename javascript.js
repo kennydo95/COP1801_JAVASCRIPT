@@ -1,25 +1,38 @@
-//Ask the user to enter their first name
-let Fname = prompt("Please enter your first name:");
-
-//Check if the user entered a name
-if (Fname){
-    document.getElementById("welcomeMessage").innerText = `Welcome, ${Fname}! Nice to have you here!`;
-} else {
-    document.getElementById("welcomeMessage").innerText = "Welcome! Nice to have you here!";
+// Task 1: For Loop to Count and Check Odd/Even
+let oddEvenOutput = document.getElementById("oddEvenOutput");
+for (let i = 0; i <= 10; i++) {
+    if (i % 2 === 0) {
+        oddEvenOutput.innerHTML += `<p>Count ${i} is even</p>`;
+    } else {
+        oddEvenOutput.innerHTML += `<p>Count ${i} is odd</p>`;
+    }
 }
 
-//Constant piValue
-const piValue = 3.1415926;
+// Task 2: Do While Loop with User Input
+function runDoWhileLoop() {
+    let userInput = document.getElementById("userInput").value;
+    let myNum = parseInt(userInput);
+    let doWhileOutput = document.getElementById("doWhileOutput");
+    doWhileOutput.innerHTML = ""; // Clear previous output
 
-//Ask the user to enter their fav numbers
-let favNum = prompt("Please enter your first favorite number:");
-
-//Check if the user entered a number
-if (favNum){
-    document.getElementById("favNum").innerText = `Your first favorite number is ${favNum}.`;
-} else {
-    document.getElementById("favNum").innerText = "You did not enter a number.";
+    if (myNum >= 5 && myNum <= 20) {
+        let counter = 1;
+        do {
+            doWhileOutput.innerHTML += `<p>Loop Counter: ${counter}</p>`;
+            counter++;
+        } while (counter <= myNum);
+    } else {
+        doWhileOutput.innerHTML = "<p>Please enter a number between 5 and 20.</p>";
+    }
 }
 
-let myArea = piValue * (favNum * favNum);
-document.getElementById("area").innerText = `Your favorite number is ${favNum}, if that number was the radius area of a circle that could ${myArea}.`;
+// Task 3: Display Array Values
+let subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+let arrayOutput = document.getElementById("arrayOutput");
+subjects.forEach((subject) => {
+    arrayOutput.innerHTML += `<p>${subject}</p>`;
+});
+
+// Task 4: Display Array Values Separated by Commas
+let arrayCommaOutput = document.getElementById("arrayCommaOutput");
+arrayCommaOutput.innerHTML = subjects.join(", ");
