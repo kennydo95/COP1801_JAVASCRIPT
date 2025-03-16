@@ -1,53 +1,55 @@
-// Function to validate service quality
-function validateServiceQuality(quality) {
-    const validQualities = ['great', 'ok', 'poor'];
-    return validQualities.includes(quality.toLowerCase());
+// Step 1: Create a literal object named myDog
+const myDog = {
+    name: "Brian Griffin",
+    show: "Family Guy",
+    breed: "White Labrador",
+    personality: "Intellectual and sarcastic",
+    catchphrase: "I'm not just a dog; I'm a writer!",
+    mySound: "When you hear me, you'll realize I'm smarter than most humans!",
+};
+
+// Display the dog's name and properties in a message
+const literalOutput = document.getElementById("literalOutput");
+literalOutput.innerHTML = `
+    Meet <strong>${myDog.name}</strong>, the <strong>${myDog.breed}</strong> from "<strong>${myDog.show}</strong>".<br>
+    <strong>Personality:</strong> ${myDog.personality}<br>
+    <strong>Catchphrase:</strong> "${myDog.catchphrase}"<br>
+    <strong>Sound:</strong> "${myDog.mySound}"
+`;
+
+// Step 2: Create a constructor for the dog object
+function Dog(name, show, breed, personality, catchphrase, mySound, canTalk) {
+    this.name = name;
+    this.show = show;
+    this.breed = breed;
+    this.personality = personality;
+    this.catchphrase = catchphrase;
+    this.mySound = mySound;
+    this.canTalk = canTalk;
+
+    // Add a method to display a greeting
+    this.myGreeting = function () {
+        return `
+            Hi, I'm <strong>${this.name}</strong> from "<strong>${this.show}</strong>"!<br>
+            I'm a <strong>${this.breed}</strong> and my personality is <strong>${this.personality}</strong>.<br>
+            My catchphrase is "<strong>${this.catchphrase}</strong>".<br>
+            About my sound: "<strong>${this.mySound}</strong>".<br>
+            Can I talk? <strong>${this.canTalk ? "Yes, I can!" : "No, I can't."}</strong>
+        `;
+    };
 }
 
-// Function to validate service amount
-function validateServiceAmount(amount) {
-    return amount >= 5.00 && amount <= 500.00;
-}
+// Create an object using the constructor
+const myDogConst = new Dog(
+    "Brian Griffin",
+    "Family Guy",
+    "White Labrador",
+    "Intellectual and sarcastic",
+    "I'm not just a dog; I'm a writer!",
+    "When you hear me, you'll realize I'm smarter than most humans!",
+    true // Brian Griffin can talk in the show
+);
 
-// Function to calculate the tip
-function calculateTip() {
-    const serviceAmount = parseFloat(document.getElementById('serviceAmount').value);
-    const serviceQuality = document.getElementById('serviceQuality').value;
-
-    // Validate service amount
-    if (!validateServiceAmount(serviceAmount)) {
-        document.getElementById('result').innerHTML = "Invalid service amount. Please enter a value between $5.00 and $500.00.";
-        return;
-    }
-
-    // Validate service quality
-    if (!validateServiceQuality(serviceQuality)) {
-        document.getElementById('result').innerHTML = "Invalid service quality. Please select 'Great', 'OK', or 'Poor'.";
-        return;
-    }
-
-    // Calculate tip based on service quality
-    let tipPercentage;
-    switch (serviceQuality.toLowerCase()) {
-        case 'great':
-            tipPercentage = 0.20;
-            break;
-        case 'ok':
-            tipPercentage = 0.15;
-            break;
-        case 'poor':
-            tipPercentage = 0.10;
-            break;
-        default:
-            tipPercentage = 0;
-    }
-
-    const tipAmount = serviceAmount * tipPercentage;
-
-    // Display the result
-    document.getElementById('result').innerHTML = `
-        <strong>Service Amount:</strong> $${serviceAmount.toFixed(2)}<br>
-        <strong>Service Quality:</strong> ${serviceQuality}<br>
-        <strong>Recommended Tip:</strong> $${tipAmount.toFixed(2)} (${(tipPercentage * 100)}%)
-    `;
-}
+// Call the object's method to display the greeting
+const constructorOutput = document.getElementById("constructorOutput");
+constructorOutput.innerHTML = myDogConst.myGreeting();
